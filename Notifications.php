@@ -9,7 +9,7 @@ Class Notifications {
 
     protected $bs = false;    
     protected $bsClose = false;
-    protected $bsCloseMessage = '';
+    protected $bsCloseMessage = 'X';
     protected $bsFormat = "<div class='alert alert-:key'>".($this->bsClose ? '<button type="button" class="close" data-dismiss="alert">'.$this->bsCloseMessage."</button>:message</div>";    
 
     public function __construct() {
