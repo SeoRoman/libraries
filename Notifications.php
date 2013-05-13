@@ -1,6 +1,7 @@
-<?php
+<?php namespace ZeroLibs;
 
 use Illuminate\Support\MessageBag;
+use Session;
 
 Class Notifications {
 
@@ -9,8 +10,7 @@ Class Notifications {
 
     protected $bs = false;    
     protected $bsClose = false;
-    protected $bsCloseMessage = 'X';
-    protected $bsFormat = "<div class='alert alert-:key'>".($this->bsClose ? '<button type="button" class="close" data-dismiss="alert">'.$this->bsCloseMessage."</button>:message</div>";    
+    protected $bsFormat = "<div class='alert alert-:key'>".($this->bsClose ? "<button type='button' class='close' data-dismiss='alert'>x</button>:message</div>";    
 
     public function __construct() {
       $this->bag = new MessageBag();
@@ -90,9 +90,6 @@ Class Notifications {
       }
       if (isset($args[2])) {
         $this->bsClose = $args[2];
-      }
-      if (isset($args[3])) {
-        $this->bsCloseMessage = $args[3];
       }
       if (is_array($message)) {
         foreach($message as $index=>$m) {
