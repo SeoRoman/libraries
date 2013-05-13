@@ -7,9 +7,19 @@ Class Notifications {
     const SESSION_KEY = 'notifications';
     protected $bag = null;
 
+    protected $bs = false;
+    protected $bsClose = false;
+    protected $bsCloseMessage = '';
+
     public function __construct() {
       $this->bag = new MessageBag();
-      $this->bag->setFormat("<div class='notification_:key'><span class=':key'>:message</span></div>");
+      if ($this->bs) {
+        $this->bag->setFormat("<div class='alert alert-:key'>".($this->bsClose ? '<button type="button" class="close" data-dismiss="alert">'.$this->bsCloseMessage."</button>:message</div>");  
+      }
+      else {
+
+        $this->bag->setFormat("<div class='notification_:key'><span class=':key'>:message</span></div>");
+      }      
     }
 
     public function add($class, $message = '') {
